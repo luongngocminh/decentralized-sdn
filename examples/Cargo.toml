@@ -1,25 +1,18 @@
-[package]
-name = "examples"
+[workspace]
+resolver = "2"
+members = [
+    "quic-tunnel"
+, "whip-whep"]
+
+[workspace.package]
 version = "0.1.0"
 edition = "2021"
-description = "Examples for atm0s-sdn"
-license = "MIT"
 publish = false
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-atm0s-sdn = { path = "../packages/runner", features = ["all"], version = "0.1.9" }
-atm0s-sdn-tun-tap = { path = "../packages/services/tun_tap", version = "0.1.6" }
-atm0s-sdn-redis-server = { path = "../packages/apps/redis", version = "0.1.7" }
-reedline-repl-rs = { version = "1.0.7", features = ["async"] }
-thiserror = { workspace = true }
-async-std = { workspace = true }
-env_logger = { workspace = true }
-async-trait = { workspace = true }
-log = { workspace = true }
-parking_lot = { workspace = true }
-serde = { workspace = true }
-clap = { workspace = true }
-rand = { workspace = true }
-bytes = "1.5.0"
+[workspace.dependencies]
+atm0s-sdn = { path = "../packages/runner" }
+tracing-subscriber = "0.3"
+signal-hook = "0.3"
+clap = { version = "4.4", features = ["derive", "env"] }
+tokio = { version = "1", features = ["full"] }
+log = "0.4"
